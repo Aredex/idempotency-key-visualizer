@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alexcuesta.dev/schemas/idempotency-key-visualizer/output.schema.json",
+  "title": "Idempotency Key Visualizer output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "status",
+    "summary",
+    "findings",
+    "evidence"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "partial",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 1000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleId",
+          "severity",
+          "message"
+        ],
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "warning",
+              "error",
+              "critical"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "evidencePath": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "suggestion": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rulesVersion",
+        "scenarioId"
+      ],
+      "properties": {
+        "rulesVersion": {
+          "type": "string"
+        },
+        "scenarioId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

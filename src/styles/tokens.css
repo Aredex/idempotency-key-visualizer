@@ -1,0 +1,57 @@
+/**
+ * Design tokens — valores exactos definidos por el sistema visual del
+ * producto (04-sistema-visual-y-accesibilidad.md). No inventar valores
+ * nuevos aquí: cualquier color/espaciado/radio que no encaje en esta lista
+ * debe derivarse de estos tokens, no añadirse suelto en un componente.
+ */
+:root {
+  --color-canvas: #f6f3ed;
+  --color-canvas-raised: #ffffff;
+  --color-ink: #172033;
+  --color-ink-muted: #4b5468;
+  /**
+   * El azul #2F6BFF que nombra 04-sistema-visual-y-accesibilidad.md no puede
+   * cumplir el requisito de contraste ≥4.5:1 del mismo documento: da 4.49:1
+   * con texto blanco encima (botón primario) y 4.06:1 como color de texto
+   * sobre --color-canvas (enlaces). Este es el mismo azul oscurecido lo justo
+   * para pasar AA en ambos usos (5.42:1 y 4.89:1); entre los dos requisitos
+   * del documento manda el de accesibilidad, que además es el gate declarado
+   * en 10-estrategia-pruebas.md ("cero violaciones axe críticas/serias").
+   */
+  --color-accent: #2a5fe6;
+  --color-accent-ink: #ffffff;
+  --color-support: #183153;
+  --color-border: #dcd5c7;
+  --color-border-strong: #b9b19f;
+
+  --color-info: #1f5fa8;
+  --color-warning: #8a5a10;
+  --color-error: #a3271f;
+  --color-critical: #8f1d2c;
+  --color-info-bg: #e4edf9;
+  --color-warning-bg: #f6ead2;
+  --color-error-bg: #f6dfdc;
+  --color-critical-bg: #f4d9dd;
+
+  --font-sans:
+    ui-sans-serif, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-control: 8px;
+
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+
+  --measure: 72ch;
+
+  --shadow-card: 0 1px 2px rgba(23, 32, 51, 0.06), 0 1px 1px rgba(23, 32, 51, 0.04);
+}

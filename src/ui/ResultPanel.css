@@ -1,0 +1,25 @@
+.result-index {
+  margin-top: 0;
+}
+
+.result-empty-state {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-control);
+  color: var(--color-ink-muted);
+  text-align: center;
+}
+
+.result-lead {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.result-clock-events {
+  margin-bottom: var(--space-6);
+}
+
+.result-runs {
+  display: flex;
+  flex-direction: column;
+}

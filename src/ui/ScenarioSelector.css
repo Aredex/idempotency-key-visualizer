@@ -1,0 +1,59 @@
+.scenario-selector-head label {
+  margin-bottom: var(--space-1);
+}
+
+.scenario-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+}
+
+.scenario-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  text-align: left;
+  background: var(--color-canvas-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--color-ink);
+  transition:
+    border-color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease;
+}
+
+.scenario-tab:hover {
+  border-color: var(--color-support);
+}
+
+.scenario-tab--active {
+  border-color: var(--color-accent);
+  background: #eef3ff;
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
+.scenario-tab-title {
+  font-weight: 600;
+}
+
+.scenario-tab-tags {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.scenario-description {
+  font-size: 0.88rem;
+  color: var(--color-ink-muted);
+  margin: 0 0 var(--space-3);
+}
+
+.scenario-invalid-demo {
+  padding-left: 0;
+}

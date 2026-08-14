@@ -1,0 +1,40 @@
+.how-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  margin: var(--space-6) 0 var(--space-8);
+}
+
+@media (min-width: 800px) {
+  .how-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.how-block h3 {
+  font-size: 1.05rem;
+}
+
+.how-block ul {
+  padding-left: 1.2em;
+  margin: 0;
+}
+
+.how-block li + li {
+  margin-top: var(--space-2);
+}
+
+.how-limits {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+}
+
+.how-disclaimer {
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-4);
+}

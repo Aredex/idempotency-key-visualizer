@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alexcuesta.dev/schemas/idempotency-key-visualizer/input.schema.json",
+  "title": "Idempotency Key Visualizer input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "scenarioId",
+    "payload",
+    "options"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "scenarioId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "payload": {
+      "type": "object",
+      "maxProperties": 200
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deterministic"
+      ],
+      "properties": {
+        "deterministic": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

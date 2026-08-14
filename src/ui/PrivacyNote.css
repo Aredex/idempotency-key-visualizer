@@ -1,0 +1,19 @@
+.privacy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+  max-width: var(--measure);
+  margin: 0;
+}
+
+.privacy-note-icon {
+  color: var(--color-accent);
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.privacy-note--hero {
+  font-size: 0.95rem;
+}

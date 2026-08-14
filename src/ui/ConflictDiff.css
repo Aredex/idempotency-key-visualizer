@@ -1,0 +1,50 @@
+.conflict-diff {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-border);
+}
+
+.conflict-diff-list {
+  margin: 0 0 var(--space-4);
+  padding-left: 1.2em;
+}
+
+.conflict-diff-list li {
+  /* Defensa en profundidad de layout: aunque `formatValue` ya trunca los
+     valores mostrados (src/ui/ConflictDiff.tsx), un texto largo sin espacios
+     no debe poder ensanchar la página. */
+  overflow-wrap: anywhere;
+}
+
+.conflict-diff-tag {
+  color: var(--color-ink-muted);
+  font-size: 0.85rem;
+}
+
+.conflict-diff-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .conflict-diff-panels {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.conflict-diff-panels > div {
+  /* Sin esto, un `<pre>` con una sola cadena larga e inquebrable (sin
+     espacios) fuerza a la pista de la grilla a crecer por encima de `1fr`
+     hasta caber su ancho mínimo de contenido, ensanchando toda la página —
+     el propio `overflow-x: auto` del `<pre>` (abajo) no evita esto por sí
+     solo dentro de una grilla. Con esto, el `<pre>` sí puede quedarse
+     genuinamente angosto y desplazarse con su propio scroll horizontal
+     (ver `tabIndex` en ConflictDiff.tsx para que ese scroll sea alcanzable
+     con teclado, como exige WCAG 2.1.1). */
+  min-width: 0;
+}
+
+.conflict-diff-panels pre {
+  max-height: 220px;
+}
