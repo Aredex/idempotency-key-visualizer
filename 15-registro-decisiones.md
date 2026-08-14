@@ -25,6 +25,12 @@
 
 No se requiere reducción material. El alcance queda limitado a cuatro requisitos P0, una sola experiencia pública y datos sintéticos.
 
+## Incidente de QA cerrado antes de v1.0.0
+
+Antes de publicar, una revisión de riesgo dedicada (obligatoria por tocar concurrencia y varios módulos) encontró un fallo **crítico**: al simular una petición concurrente (`EngineRuntime`) sobre una clave que ya tenía un resultado guardado, el registro durable se sobrescribía con el centinela `in-progress` y se perdía (`fingerprint`, `storedOutput`, `storedPayload`, `expiresAtMs`). La solicitud propietaria del lock terminaba reportándose como "primera ejecución" con un `runId` nuevo en vez de como reintento — contradiciendo, en el camino de interacción más obvio (ejecutar y luego pulsar "Simular petición concurrente"), la afirmación central del producto de que el resultado guardado no se sobrescribe. Ninguna prueba existente lo detectaba porque todas lanzaban la carrera sobre una clave virgen.
+
+Se corrigió preservando el registro previo bajo el centinela de "en curso" y restaurándolo al resolver, con pruebas de regresión añadidas en las tres capas (unit/integración sobre `EngineRuntime`, y un caso E2E contra Chromium real) que fallan con el código anterior y pasan con la corrección. La misma revisión encontró y cerró un problema de residuo de datos tras "Eliminar datos locales" (temporizadores/llaves en vuelo no se limpiaban) y dos gaps menores (longitud de cadena sin límite rompiendo el layout del diff; dos líneas de copy en la UI sin el matiz "no es exactly-once" que sí llevaba el texto del motor). Detalle completo en el historial de commits del repositorio (`git log`) y en `README.md` §Pruebas y evidencia.
+
 ## Preguntas no bloqueantes
 
 - ¿Cuál fixture debe aparecer primero tras pruebas con usuarios?

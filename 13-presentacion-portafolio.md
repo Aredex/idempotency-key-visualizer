@@ -3,7 +3,21 @@
 
 **Proyecto:** Idempotency Key Visualizer  
 **Decisión:** GO  
-**Versión del paquete:** 0.1 · 2026-08-14
+**Versión del paquete:** 0.1 · 2026-08-14  
+**Estado:** publicado — `v1.0.0`
+
+## Producción
+
+- **URL real:** https://idempotency-key-visualizer.pages.dev
+- **Dominio del portafolio** (pendiente de que el orquestador central adjunte el registro DNS): `https://idempotency-key-visualizer.alexcuesta.dev`
+- **Repositorio:** https://github.com/Aredex/idempotency-key-visualizer (público, tag `v1.0.0`)
+- **CI (GitHub Actions):** en verde — job `quality` (lint, typecheck, 278 tests unit/contrato/integración, build) y job `e2e` (36 tests Playwright, incl. axe) pasando en `ubuntu-24.04` / Node 24 / pnpm 10.
+
+## Sustituto de las "5 pruebas observadas"
+
+No hubo usuarios humanos disponibles para esta ronda de lanzamiento. En su lugar, el sustituto automático documentado en `12-plan-lanzamiento.md`/el playbook del portafolio es la suite E2E: recorrido feliz de 30 s (primera ejecución + reintento con el mismo identificador), recorrido extendido de 90 s (conflicto con diff accesible + exportación), y dos casos límite/adversariales (contenido hostil renderizado como texto inerte, entrada inválida rechazada con foco en el error) — 36 pruebas en total, más 7 escaneos de accesibilidad con axe-core en distintos estados de la app, todas en verde sobre Chromium real en CI. Esto es evidencia de que los caminos son recorribles y accesibles a nivel de máquina; **no sustituye** una validación real de si un visitante humano entiende, sin ayuda, la diferencia entre idempotencia observada y exactly-once — eso queda pendiente de las próximas iteraciones del portafolio, con métricas honestas y no inventadas.
+
+Una revisión de riesgo dedicada, además, encontró y cerró antes de esta publicación un fallo crítico: simular una petición concurrente sobre una clave ya completada podía destruir el resultado guardado y reportar un reintento como una primera ejecución nueva — contradiciendo la promesa central del producto en el camino de interacción más obvio. Quedó corregido con pruebas de regresión en las tres capas (unit, integración, E2E) antes del tag `v1.0.0`. Ver `15-registro-decisiones.md` y el historial de commits del repositorio para el detalle.
 
 ## Titular
 
